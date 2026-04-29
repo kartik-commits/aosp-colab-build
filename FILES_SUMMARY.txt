@@ -1,0 +1,199 @@
+
+ AOSP COLAB BUILD - COMPLETE PACKAGE SUMMARY 
+
+ WHAT YOU HAVE
+
+Location: /home/kartiks-fedora/.copilot/session-state/332b1724-1d14-4b47-8b14-505b93c2d731/files/
+
+5 Core Files:
+
+1. AOSP_Build_Colab.ipynb (15KB)
+ → Main notebook - START HERE!
+ → Copy this file into Google Colab
+ → Contains 8 cells for setup, build, upload
+ → Fully commented and ready to use
+
+2. aosp_build_manager.py (8.5KB)
+ → Helper Python module for build orchestration
+ → Automatically included in notebook
+ → Also available standalone if needed
+
+3. build_orchestrator.py (8.9KB)
+ → Advanced checkpointing system
+ → Optional - for complex multi-session builds
+ → Enables detailed phase tracking & resumption
+
+4. README.md (4.7KB)
+ → Quick reference guide
+ → Configuration options
+ → Troubleshooting basics
+ → Command examples
+
+5. SETUP.md (4.7KB)
+ → Step-by-step setup instructions
+ → First-time user guide
+ → Timeline & expectations
+ → Configuration checklist
+
+6. TROUBLESHOOTING.md (6.3KB)
+ → Common issues & solutions
+ → Debug commands
+ → Performance tuning
+ → Recovery procedures
+
+ GETTING STARTED
+
+Step 1: Download AOSP_Build_Colab.ipynb
+Step 2: Open in Google Colab (colab.research.google.com)
+Step 3: Run cells 1-13 in order
+Step 4: Enjoy your PixelOS ROM!
+
+Total time: ~90 min (first build)
+
+ QUICK CHECKLIST
+
+Before opening Colab:
+ Have Google Colab Pro account
+ Have 200GB free space in Google Drive
+ Download AOSP_Build_Colab.ipynb
+
+In Colab (cell 11):
+ Update LUNCH_TARGET to your device
+ Adjust JOBS if needed (default: 20)
+ Update DRIVE_PATH if using custom location
+
+ ARCHITECTURE
+
+Your Setup:
+ Colab Pro (47GB RAM, 24 cores, 200GB storage)
+ Build Environment
+ Source Code (100-150GB)
+ Synced once, kept on Drive for reuse
+ Build Output /out (30-50GB)
+ Compressed & uploaded after each build
+ ccache (10-20GB)
+ Backed up to accelerate incremental builds
+
+Google Drive:
+ MyDrive/AOSP/
+ source/ (source tree, optional)
+ ccache.tar.gz (compiler cache, ~15GB)
+ out_SESSION.tar.gz (build outputs, compressed)
+ build_state.json (metadata)
+ build.log (build errors/warnings)
+
+⏱ TIME ESTIMATE
+
+First Session (Day 1):
+ • Setup (Mount Drive, deps): 5 min
+ • Repo init & sync: 30 min
+ • Build: 50 min
+ • Upload: 15 min
+ 
+ TOTAL: ~100 min
+
+Subsequent Sessions (Day 2+):
+ • Setup: 5 min
+ • Restore ccache: 2 min
+ • Build (with cache): 50 min
+ • Upload: 15 min
+ 
+ TOTAL: ~70 min
+
+ CUSTOMIZATION
+
+Change Build Target:
+ In cell 11: LUNCH_TARGET = "cheetah-userdebug"
+ Options: cheetah, bluejay, redfin, oriole, etc.
+
+Adjust Parallelization:
+ In cell 11: JOBS = 20
+ Safe range: 12-24 (depends on available RAM)
+
+Use Custom Drive Location:
+ In cell 7: DRIVE_PATH = "/root/gdrive/MyDrive/MyFolder"
+
+ VERIFICATION
+
+After build completes, check:
+ Cell output shows " BUILD SUCCESSFUL!"
+ Google Drive has out_*.tar.gz file
+ ccache.tar.gz exists on Drive
+ build_state.json updated with session info
+
+ INCLUDED FEATURES
+
+ Automatic Drive mounting & sync
+ Persistent caching on Drive
+ Resumable builds (pick up where you left)
+ ccache integration (2-3x faster rebuilds)
+ Automatic compression & upload
+ Session tracking & state management
+ Error handling & logging
+ Built-in troubleshooting helpers
+
+ WORKFLOW
+
+Daily Workflow:
+ Day 1: Full setup + first build → 100 min
+ Day 2: Restore cache + rebuild → 70 min
+ Day 3: Same as Day 2 → 70 min
+ ...
+
+Between Days:
+ • Colab resets → files lost locally
+ • ccache/outputs stay on Drive
+ • Next session auto-restores everything
+
+Max Builds per Month:
+ At 1hr/day × 30 days = 30 hours
+ With ~70min per build = ~25 builds possible
+ (Enough for active development!)
+
+ IMPORTANT NOTES
+
+• Colab session timeout: 1 hr daily (as mentioned)
+ Build will pause if it runs over
+ Next session resumes automatically
+
+• Storage limit: 200GB total
+ Don't keep multiple /out extracted locally
+ Compress before uploading to Drive
+
+• Internet: Colab to Drive bandwidth is good
+ 50GB upload → ~10-15 min
+
+• Compilation: 20 parallel jobs on Colab Pro is optimal
+ Don't exceed 24 (may cause OOM)
+
+ PRO TIPS
+
+1. Always keep ccache.tar.gz on Drive
+ → It speeds up rebuilds 2-3x
+
+2. Build different devices with same ccache
+ → Lunch "cheetah-userdebug" Day 1
+ → Lunch "redfin-userdebug" Day 2
+ → They share the same cache!
+
+3. Monitor space with cell 7
+ → Run between cells if worried
+
+4. Save build logs
+ → Always check /root/aosp/build.log if something fails
+
+5. Use `-j 16` instead of `-j 20` if uncertain
+ → Safer, more stable, less OOM risk
+
+ SUPPORT
+
+• Questions about AOSP? → https://source.android.com/docs/setup/build
+• PixelOS specific? → https://github.com/PixelOS-AOSP/android_manifest
+• Build errors? → Check TROUBLESHOOTING.md (comprehensive!)
+
+Ready to build? 
+
+Download AOSP_Build_Colab.ipynb and start building!
+
+Questions? Check README.md or TROUBLESHOOTING.md first.
+
